@@ -2,6 +2,8 @@
 package com.mycompany.peluqueriacanina.igu;
 
 import com.mycompany.peluqueriacanina.logica.ControladoraLogica;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class CargarDatos extends javax.swing.JFrame {
     
@@ -260,6 +262,15 @@ public class CargarDatos extends javax.swing.JFrame {
         
         
         controlLogic.guardar(nombreMascota, razaMascota, colorMascota, observaciones, alergico, atEspecial, nombreDuenio, celDuenio);
+        
+        //Esta porcion de codigo es para que aparezca un cuadro de dialogo
+        JOptionPane optionPane = new JOptionPane("Se guardó correctamente");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+   
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     

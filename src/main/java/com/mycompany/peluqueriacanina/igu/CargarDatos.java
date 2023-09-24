@@ -1,18 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.mycompany.peluqueriacanina.igu;
 
-/**
- *
- * @author bonza
- */
-public class CargarDatos extends javax.swing.JFrame {
+import com.mycompany.peluqueriacanina.logica.ControladoraLogica;
 
-    /**
-     * Creates new form CargarDatos
-     */
+public class CargarDatos extends javax.swing.JFrame {
+    
+    ControladoraLogica controlLogic = new ControladoraLogica();
+
     public CargarDatos() {
         initComponents();
     }
@@ -97,15 +91,14 @@ public class CargarDatos extends javax.swing.JFrame {
                             .addComponent(txtRaza)
                             .addComponent(txtNombre)
                             .addComponent(txtColor, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbAlergico, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel6)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cmbAtEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cmbAlergico, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbAtEspecial, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -173,6 +166,11 @@ public class CargarDatos extends javax.swing.JFrame {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon("C:\\Users\\bonza\\OneDrive\\Documents\\NetBeansProjects\\TodoCode_POOconJava2023\\PeluqueriaCanina\\images\\icons8-save-24.png")); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -248,6 +246,21 @@ public class CargarDatos extends javax.swing.JFrame {
         cmbAtEspecial.setSelectedIndex(0);
         
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        String nombreMascota = txtNombre.getText();
+        String razaMascota = txtRaza.getText();
+        String colorMascota = txtColor.getText();
+        String observaciones = txtObservaciones.getText();
+        String alergico = (String) cmbAlergico.getSelectedItem();
+        String atEspecial = (String) cmbAtEspecial.getSelectedItem();
+        
+        String nombreDuenio = txtNombreDuenio.getText();
+        String celDuenio = txtCelDuenio.getText();
+        
+        
+        controlLogic.guardar(nombreMascota, razaMascota, colorMascota, observaciones, alergico, atEspecial, nombreDuenio, celDuenio);
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     
 

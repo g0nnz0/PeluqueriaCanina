@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.peluqueriacanina.igu;
 
-/**
- *
- * @author bonza
- */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         initComponents();
     }
@@ -129,10 +118,11 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCargarDatosActionPerformed
 
     private void btnVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosActionPerformed
-        // TODO add your handling code here:
+        VerDatos pantalla = new VerDatos();
+        pantalla.setVisible(true);
+        pantalla.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnVerDatosActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCargarDatos;

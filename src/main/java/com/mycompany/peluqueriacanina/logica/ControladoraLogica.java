@@ -1,5 +1,7 @@
 package com.mycompany.peluqueriacanina.logica;
 
-public class ControladoraLogica {
+import com.mycompany.peluqueriacanina.persistencia.ControladoraPersistencia;
 
+public class ControladoraLogica {
+    ControladoraPersistencia controlPersis = new ControladoraPersistencia();
 }

@@ -108,19 +108,22 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCargarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarDatosActionPerformed
         CargarDatos pantalla = new CargarDatos();
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnCargarDatosActionPerformed
 
     private void btnVerDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerDatosActionPerformed
         VerDatos pantalla = new VerDatos();
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnVerDatosActionPerformed
 
 

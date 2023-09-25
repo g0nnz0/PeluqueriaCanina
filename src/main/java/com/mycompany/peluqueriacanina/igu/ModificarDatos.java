@@ -300,6 +300,7 @@ public class ModificarDatos extends javax.swing.JFrame {
         VerDatos pantallaVer = new VerDatos();
         pantallaVer.setVisible(true);
         pantallaVer.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
 

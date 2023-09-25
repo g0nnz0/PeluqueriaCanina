@@ -208,6 +208,7 @@ public class VerDatos extends javax.swing.JFrame {
         Principal pantalla = new Principal();
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened

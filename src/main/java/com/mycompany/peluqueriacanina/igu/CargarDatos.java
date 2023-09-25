@@ -292,6 +292,7 @@ public class CargarDatos extends javax.swing.JFrame {
         Principal pantalla = new Principal();
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     

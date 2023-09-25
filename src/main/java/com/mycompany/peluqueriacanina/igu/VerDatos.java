@@ -226,12 +226,16 @@ public class VerDatos extends javax.swing.JFrame {
                 pantallaModificar.setVisible(true);
                 pantallaModificar.setLocationRelativeTo(null);
                 
+                this.dispose();
+                
             } else {
                 mostrarMensaje("No seleccionó ninguna mascota", "Error", "Error al editar");
             }
         } else {
             mostrarMensaje("No hay nada para editar en la tabla", "Error", "Error al editar");
         }
+        
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
 
@@ -247,7 +251,7 @@ public class VerDatos extends javax.swing.JFrame {
     private javax.swing.JTable tablaMascotas;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarTabla() {
+    public void cargarTabla() {
         //Definimos el modelo que queremos para la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel() {
 

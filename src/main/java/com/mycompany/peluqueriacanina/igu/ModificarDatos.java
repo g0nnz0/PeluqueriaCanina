@@ -286,6 +286,14 @@ public class ModificarDatos extends javax.swing.JFrame {
         
         //mensaje de que todo salio bien
         mostrarMensaje("Edición realizada Correctamente", "Info", "Edición Correcta");
+        
+        //Para recargar la pantalla de datos una vez modificados
+        VerDatos pantallaVerDatos = new VerDatos();
+        pantallaVerDatos.setVisible(true);
+        pantallaVerDatos.setLocationRelativeTo(null);
+        
+        this.dispose();
+        
     }//GEN-LAST:event_btnGuardarCambiosActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

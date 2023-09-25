@@ -172,6 +172,9 @@
                   <Image iconType="2" name="C:\Users\bonza\OneDrive\Documents\NetBeansProjects\TodoCode_POOconJava2023\PeluqueriaCanina\images\icons8-edit-48.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnEliminar">
               <Properties>

@@ -1,19 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.peluqueriacanina.igu;
 
-/**
- *
- * @author bonza
- */
+import com.mycompany.peluqueriacanina.logica.ControladoraLogica;
+import com.mycompany.peluqueriacanina.logica.Mascota;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 public class VerDatos extends javax.swing.JFrame {
+
+    ControladoraLogica controlLogic = null;
 
     /**
      * Creates new form VerDatos
      */
     public VerDatos() {
+        controlLogic = new ControladoraLogica();
         initComponents();
     }
 
@@ -30,20 +30,25 @@ public class VerDatos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaMascotas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Visualización de Datos");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaMascotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -54,7 +59,7 @@ public class VerDatos extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaMascotas);
 
         jLabel2.setText("Datos de Mascotas:");
 
@@ -165,7 +170,10 @@ public class VerDatos extends javax.swing.JFrame {
         pantalla.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarTabla();
+    }//GEN-LAST:event_formWindowOpened
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
@@ -176,6 +184,36 @@ public class VerDatos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaMascotas;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+        //Definimos el modelo que queremos para la tabla
+        DefaultTableModel modeloTabla = new DefaultTableModel() {
+
+            //Hacemos que filas y columnas no sean editables
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        //Establecemos los nombres de las columnas
+        String titulos[] = {"Num", "Nombre", "Color", "Raza", "Alergico", "At. Esp.", "Dueño", "Cel"};
+        modeloTabla.setColumnIdentifiers(titulos);
+
+        //Carga de los datos desde la BD
+        List<Mascota> listaMascotas = controlLogic.traerMascotas();
+        
+        //Recorrer la lista y mostrar cada uno de los elementos
+        if (listaMascotas != null) {
+            for(Mascota mascotita : listaMascotas){
+                Object[] objeto = {mascotita.getNum_cliente(), mascotita.getNombre(), mascotita.getColor(), mascotita.getRaza(), mascotita.getAlergico(), mascotita.getAtencion_especial(), mascotita.getUnDuenio().getNombre(), mascotita.getUnDuenio().getCel_duenio()};
+                modeloTabla.addRow(objeto);
+            }
+        }
+        
+        //Recien con esta linea agregué el modelo de tabla a la tabla visible del gui
+        tablaMascotas.setModel(modeloTabla);
+    }
 }

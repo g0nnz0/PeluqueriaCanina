@@ -7,12 +7,12 @@ import javax.swing.JOptionPane;
 
 public class ModificarDatos extends javax.swing.JFrame {
 
-    ControladoraLogica controlLogic = null;
+    ControladoraLogica controlLogic = new ControladoraLogica();
     int num_cliente;
     Mascota masco = controlLogic.traerMascota(num_cliente);
 
     public ModificarDatos(int num_cliente) {
-        controlLogic = new ControladoraLogica();
+        
         this.num_cliente = num_cliente;
         initComponents();
         cargarDatos(num_cliente);

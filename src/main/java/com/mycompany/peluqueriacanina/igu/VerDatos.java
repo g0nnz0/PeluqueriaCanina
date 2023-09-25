@@ -3,6 +3,8 @@ package com.mycompany.peluqueriacanina.igu;
 import com.mycompany.peluqueriacanina.logica.ControladoraLogica;
 import com.mycompany.peluqueriacanina.logica.Mascota;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VerDatos extends javax.swing.JFrame {
@@ -161,9 +163,44 @@ public class VerDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEliminarActionPerformed
+        //Controlo que existan datos en tabla
+        if (tablaMascotas.getRowCount() > 0) {
+            //Controlo que este seleccionado una fila, lo de -1 es porque empieza a contar dede 0
+            if (tablaMascotas.getSelectedRow() != -1) {
 
+                //"Asignale a num_cliente el parseo a int del valor en la tablaMascotas que esté ubicado en la columna 0 de la fila seleccionada."
+                int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
+                //Llamo al metodo de la logica borrar.
+                controlLogic.borrar(num_cliente);
+                
+                //Aviso al usuario lo ocurrido
+                mostrarMensaje("Mascota Eliminada Correctamente", "Info", "Borrado de Mascota");
+                cargarTabla();
+                
+            }
+            else{
+                mostrarMensaje("No seleccionó ninguna mascota", "Error", "Error al eliminar");
+            }
+        }
+        else{
+            mostrarMensaje("No hay nada para eliminar en la tabla", "Error", "Error al eliminar");
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+    
+    public void mostrarMensaje(String mensaje, String tipoMensaje, String titulo){
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if (tipoMensaje.equals("Info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipoMensaje.equals("Error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+                
+                JDialog dialog = optionPane.createDialog(titulo);
+                dialog.setAlwaysOnTop(true);
+                dialog.setVisible(true);
+    }
+    
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         Principal pantalla = new Principal();
         pantalla.setVisible(true);
@@ -204,15 +241,15 @@ public class VerDatos extends javax.swing.JFrame {
 
         //Carga de los datos desde la BD
         List<Mascota> listaMascotas = controlLogic.traerMascotas();
-        
+
         //Recorrer la lista y mostrar cada uno de los elementos
         if (listaMascotas != null) {
-            for(Mascota mascotita : listaMascotas){
+            for (Mascota mascotita : listaMascotas) {
                 Object[] objeto = {mascotita.getNum_cliente(), mascotita.getNombre(), mascotita.getColor(), mascotita.getRaza(), mascotita.getAlergico(), mascotita.getAtencion_especial(), mascotita.getUnDuenio().getNombre(), mascotita.getUnDuenio().getCel_duenio()};
                 modeloTabla.addRow(objeto);
             }
         }
-        
+
         //Recien con esta linea agregué el modelo de tabla a la tabla visible del gui
         tablaMascotas.setModel(modeloTabla);
     }

@@ -28,4 +28,8 @@ public class ControladoraLogica {
     public List<Mascota> traerMascotas() {
         return controlPersis.traerMascotas();
     }
+
+    public void borrar(int num_cliente) {
+        controlPersis.borrarMascota(num_cliente);
+    }
 }
